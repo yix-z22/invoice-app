@@ -20,5 +20,8 @@ node_modules/
 dist/
 .vercel/
 
+# Local build tracker
+index.html
+
 # OS
 .DS_Store
