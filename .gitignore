@@ -1,0 +1,24 @@
+# Environment variables — never commit
+.env
+.env.local
+.env.*.local
+
+# Sensitive source files — local reference only
+*.xls
+*.xlsx
+*.pdf
+*.jpg
+*.jpeg
+*.png
+SDP4U-Invoice-App-Spec.md
+
+# Claude memory
+.claude/
+
+# Dependencies & build output
+node_modules/
+dist/
+.vercel/
+
+# OS
+.DS_Store
