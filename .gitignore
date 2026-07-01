@@ -35,7 +35,7 @@ dist-ssr
 *.jpg
 *.jpeg
 *.png
-SDP4U-Invoice-App-Spec.md
+*.md
 
 # Local build tracker
 index.html
