@@ -89,14 +89,14 @@ export async function deleteInvoice(id: string): Promise<void> {
 }
 
 export async function getDistinctBillTo(contactId?: string): Promise<string[]> {
-  let query=  supabase
+  let query = supabase
     .from("invoices")
     .select("bill_to")
     .not("bill_to", "is", null);
 
-  if (contactId) query = query.eq("contact_id", contactId)
-  
-  const { data, error } = await query
+  if (contactId) query = query.eq("contact_id", contactId);
+
+  const { data, error } = await query;
   if (error) throw new Error(error.message);
   return [...new Set(data.map((r) => r.bill_to as string))];
 }
