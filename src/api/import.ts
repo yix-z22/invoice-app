@@ -8,9 +8,11 @@ export interface ImportSummary {
   flaggedRows: ParsedRow[];
 }
 
-export async function importInvoices(rows: ParsedRow[]): Promise<ImportSummary> {
-  const good = rows.filter(r => r.flags.length === 0);
-  const flagged = rows.filter(r => r.flags.length > 0);
+export async function importInvoices(
+  rows: ParsedRow[],
+): Promise<ImportSummary> {
+  const good = rows.filter((r) => r.flags.length === 0);
+  const flagged = rows.filter((r) => r.flags.length > 0);
 
   const companyNames = new Set<string>();
   for (const row of good) {
@@ -68,8 +70,8 @@ export async function importInvoices(rows: ParsedRow[]): Promise<ImportSummary> 
     if (error) throw new Error(error.message);
   }
 
-  const maxInvoiceNo = Math.max(...good.map(r => r.invoice_no ?? 0));
-  const maxRefNo = Math.max(...good.map(r => r.our_ref_no ?? 0));
+  const maxInvoiceNo = Math.max(...good.map((r) => r.invoice_no ?? 0));
+  const maxRefNo = Math.max(...good.map((r) => r.our_ref_no ?? 0));
 
   await supabase
     .from("settings")

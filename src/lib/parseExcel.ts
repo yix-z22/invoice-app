@@ -49,12 +49,12 @@ export async function parseInvoiceExcel(file: File): Promise<ParsedRow[]> {
     if (rawPayment instanceof Date) {
       payment_received_date = rawPayment.toISOString().split("T")[0];
     } else if (rawPayment !== null) {
-      paymentFlag = `unparseable payment date: ${String(rawPayment)}`;
+      paymentFlag = `Payment date could not be read: "${String(rawPayment)}"`;
     }
 
     const flags: string[] = [];
     if (paymentFlag) flags.push(paymentFlag);
-    if (!issueDateStr) flags.push("missing issue date");
+    if (!issueDateStr) flags.push("Issue date is missing");
 
     const rawRemarks = row[7];
     let our_ref_no: number | undefined;
