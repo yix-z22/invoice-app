@@ -39,7 +39,7 @@ CREATE TABLE invoices (
   our_ref_no      int NOT NULL,
   contact_id      uuid REFERENCES contacts(id),
   bill_to         text,
-  deliver_to         text,
+  deliver_to      text,
   attn            text,
   delivery_type   delivery_type NOT NULL DEFAULT 'delivery',
   po_number       text,
