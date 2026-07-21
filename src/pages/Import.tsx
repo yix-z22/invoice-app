@@ -9,23 +9,19 @@ type Step = "upload" | "preview" | "importing" | "done";
 
 export default function Import() {
   const [step, setStep] = useState<Step>("upload");
-  const [goodRows, setGoodRows] = useState<ParsedRow[]>([]);
-  const [skippedCount, setSkippedCount] = useState(0);
+  const [rows, setRows] = useState<ParsedRow[]>([]);
   const [summary, setSummary] = useState<ImportSummary | null>(null);
   const [dragOver, setDragOver] = useState(false);
 
   async function handleFile(file: File) {
     const parsed = await parseInvoiceExcel(file);
-    const good = parsed.filter((r) => r.flags.length === 0);
-    const skipped = parsed.filter((r) => r.flags.length > 0);
-    setGoodRows(good);
-    setSkippedCount(skipped.length);
+    setRows(parsed);
     setStep("preview");
   }
 
   async function handleConfirm() {
     setStep("importing");
-    const result = await importInvoices(goodRows);
+    const result = await importInvoices(rows);
     setSummary(result);
     setStep("done");
   }
@@ -67,13 +63,14 @@ export default function Import() {
 
   // Step 2: preview
   if (step === "preview") {
+    const drafts = rows.filter((r) => !r.issue_date).length;
+
     return (
       <div className="import-preview">
-        <h2>{goodRows.length} rows to import</h2>
-
-        {skippedCount > 0 && (
-          <p className="skipped-note">
-            {skippedCount} rows skipped due to missing data
+        <h2>{rows.length} rows to import</h2>
+        {drafts > 0 && (
+          <p className="draft-note">
+            {drafts} rows without issue date will be saved as drafts
           </p>
         )}
 
@@ -86,16 +83,18 @@ export default function Import() {
                 <th>Contact</th>
                 <th>Date</th>
                 <th>Amount</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {goodRows.map((row, i) => (
-                <tr key={i}>
+              {rows.map((row, i) => (
+                <tr key={i} className={!row.issue_date ? "draft-row" : ""}>
                   <td>{row.invoice_no}</td>
                   <td>{row.customer}</td>
                   <td>{row.contact_person}</td>
-                  <td>{row.issue_date}</td>
+                  <td>{row.issue_date ?? "—"}</td>
                   <td>{row.total_amount}</td>
+                  <td>{row.issue_date ? (row.payment_received_date ? "Paid" : "Unpaid") : "Draft"}</td>
                 </tr>
               ))}
             </tbody>
@@ -103,7 +102,7 @@ export default function Import() {
         </div>
 
         <button className="confirm-button" onClick={handleConfirm}>
-          Import {goodRows.length} invoices
+          Import {rows.length} invoices
         </button>
       </div>
     );
@@ -126,13 +125,12 @@ export default function Import() {
         <li>{summary?.companiesCreated} companies created</li>
         <li>{summary?.contactsCreated} contacts created</li>
         <li>{summary?.invoicesCreated} invoices imported</li>
-        {skippedCount > 0 && <li>{skippedCount} rows skipped</li>}
+        <li>{summary?.draftsCreated} drafts saved</li>
       </ul>
       <button
         onClick={() => {
           setStep("upload");
-          setGoodRows([]);
-          setSkippedCount(0);
+          setRows([]);
           setSummary(null);
         }}
       >
