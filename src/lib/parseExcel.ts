@@ -25,6 +25,7 @@ export async function parseInvoiceExcel(file: File): Promise<ParsedRow[]> {
 
   const results: ParsedRow[] = [];
   let lastCustomer: string | null = null;
+  let lastIssueDate: string | null = null;
 
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i] as unknown[];
@@ -36,11 +37,15 @@ export async function parseInvoiceExcel(file: File): Promise<ParsedRow[]> {
     const customer = (row[2] as string | null) ?? lastCustomer ?? undefined;
     if (row[2]) lastCustomer = row[2] as string;
 
+    // forward-fill issue date (merged cells only have value in top row)
     const issueDate = row[4];
-    const issueDateStr =
-      issueDate instanceof Date
-        ? issueDate.toISOString().split("T")[0]
-        : undefined;
+    let issueDateStr: string | undefined;
+    if (issueDate instanceof Date) {
+      issueDateStr = issueDate.toISOString().split("T")[0];
+      lastIssueDate = issueDateStr;
+    } else {
+      issueDateStr = lastIssueDate ?? undefined;
+    }
 
     const rawPayment = row[6];
     let payment_received_date: string | undefined;
@@ -54,7 +59,6 @@ export async function parseInvoiceExcel(file: File): Promise<ParsedRow[]> {
 
     const flags: string[] = [];
     if (paymentFlag) flags.push(paymentFlag);
-    if (!issueDateStr) flags.push("Issue date is missing");
 
     const rawRemarks = row[7];
     let our_ref_no: number | undefined;

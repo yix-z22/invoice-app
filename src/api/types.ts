@@ -10,6 +10,12 @@ export const PaymentTerms = {
 } as const;
 export type PaymentTerms = (typeof PaymentTerms)[keyof typeof PaymentTerms];
 
+export const InvoiceStatus = {
+  Draft: "draft",
+  Issued: "issued",
+} as const;
+export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus];
+
 export const PaymentStatus = {
   Paid: "paid",
   Unpaid: "unpaid",
@@ -42,6 +48,7 @@ export interface Invoice {
   id: string;
   invoice_no: number;
   our_ref_no: number;
+  invoice_status: InvoiceStatus;
   contact_id: string | null;
   bill_to: string | null;
   deliver_to: string | null;
