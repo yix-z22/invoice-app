@@ -3,6 +3,7 @@ import { AuthProvider } from "./auth/AuthProvider";
 import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { Layout } from "./pages/Layout";
 import Import from "./pages/Import";
+import Login from "./pages/Login";
 
 function Placeholder({ name }: { name: string }) {
   return <h1>{name}</h1>;
@@ -13,7 +14,7 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/login" element={<Placeholder name="Login" />} />
+          <Route path="/login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
               <Route path="/" element={<Placeholder name="Dashboard" />} />
