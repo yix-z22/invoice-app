@@ -4,6 +4,7 @@ import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { Layout } from "./pages/Layout";
 import Import from "./pages/Import";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 function Placeholder({ name }: { name: string }) {
   return <h1>{name}</h1>;
@@ -17,7 +18,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
-              <Route path="/" element={<Placeholder name="Dashboard" />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/invoices" element={<Placeholder name="Invoices" />} />
               <Route path="/invoice/new" element={<Placeholder name="New Invoice" />} />
               <Route path="/invoice/:id" element={<Placeholder name="Edit Invoice" />} />

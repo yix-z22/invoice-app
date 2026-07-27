@@ -1,0 +1,72 @@
+/* -- Summary Cards -- */
+.dashboard {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cards {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.card .count {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.card .label {
+  font-size: 14px;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+/* -- Recent Invoices Table -- */
+.dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.dashboard th,
+.dashboard td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.dashboard th {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.dashboard tr {
+  cursor: pointer;
+}
+
+.dashboard tr:hover {
+  background: var(--accent-bg);
+}
+
+/* -- Payment Status Badge -- */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.paid { background: #d1fae5; color: #065f46; }
+.badge.unpaid { background: #fef3c7; color: #92400e; }
+.badge.overdue { background: #fee2e2; color: #991b1b; }
