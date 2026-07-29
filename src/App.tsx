@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./auth/AuthProvider";
 import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { Layout } from "./pages/Layout";
+import Invoices from "./pages/Invoices";
 import Import from "./pages/Import";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -19,7 +20,7 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/invoices" element={<Placeholder name="Invoices" />} />
+              <Route path="/invoices" element={<Invoices />} />
               <Route path="/invoice/new" element={<Placeholder name="New Invoice" />} />
               <Route path="/invoice/:id" element={<Placeholder name="Edit Invoice" />} />
               <Route path="/import" element={<Import />} />
