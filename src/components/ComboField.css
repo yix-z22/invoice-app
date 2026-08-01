@@ -1,0 +1,31 @@
+.combo-field {
+  position: relative;
+}
+
+.combo-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: var(--shadow);
+}
+
+.combo-list li {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-h);
+}
+
+.combo-list li:hover {
+  background: var(--accent-bg);
+}

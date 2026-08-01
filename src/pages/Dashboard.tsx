@@ -22,21 +22,29 @@ export default function Dashboard() {
 
     async function load() {
       const { data } = await supabase
-      .from("invoices")
-      .select("id, invoice_no, invoice_status, bill_to, invoice_date, payment_status, line_items(amount)")
-      .order("invoice_date", { ascending: false });
+        .from("invoices")
+        .select(
+          "id, invoice_no, invoice_status, bill_to, invoice_date, payment_status, line_items(amount)",
+        )
+        .order("invoice_date", { ascending: false });
 
       if (!ignore) setInvoices(data ?? []);
     }
     load();
 
-    return () => { ignore = true; };
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const issued = invoices.filter((inv) => inv.invoice_status === "issued");
   const unpaid = issued.filter((inv) => inv.payment_status === "unpaid").length;
-  const overdue = issued.filter((inv) => inv.payment_status === "overdue").length;
-  const drafts = invoices.filter((inv) => inv.invoice_status === "draft").length;
+  const overdue = issued.filter(
+    (inv) => inv.payment_status === "overdue",
+  ).length;
+  const drafts = invoices.filter(
+    (inv) => inv.invoice_status === "draft",
+  ).length;
   const recent = invoices.slice(0, 10);
 
   return (
@@ -81,8 +89,8 @@ export default function Dashboard() {
               <td>{inv.invoice_date}</td>
               <td>
                 {inv.line_items
-                .reduce((sum, li) => sum + li.amount, 0)
-                .toFixed(2)}
+                  .reduce((sum, li) => sum + li.amount, 0)
+                  .toFixed(2)}
               </td>
               <td>
                 <span className={`badge ${inv.payment_status}`}>

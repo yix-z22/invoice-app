@@ -6,10 +6,7 @@ import Invoices from "./pages/Invoices";
 import Import from "./pages/Import";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-
-function Placeholder({ name }: { name: string }) {
-  return <h1>{name}</h1>;
-}
+import InvoiceForm from "./pages/InvoiceForm";
 
 export default function App() {
   return (
@@ -21,8 +18,8 @@ export default function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/invoices" element={<Invoices />} />
-              <Route path="/invoice/new" element={<Placeholder name="New Invoice" />} />
-              <Route path="/invoice/:id" element={<Placeholder name="Edit Invoice" />} />
+              <Route path="/invoice/new" element={<InvoiceForm />} />
+              <Route path="/invoice/:id" element={<InvoiceForm />} />
               <Route path="/import" element={<Import />} />
             </Route>
           </Route>

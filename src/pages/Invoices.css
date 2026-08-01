@@ -106,7 +106,19 @@
   font-weight: 600;
 }
 
-.invoices-page .badge.paid { background: #d1fae5; color: #065f46; }
-.invoices-page .badge.unpaid { background: #fef3c7; color: #92400e; }
-.invoices-page .badge.overdue { background: #fee2e2; color: #991b1b; }
-.invoices-page .badge.draft { background: #e0e7ff; color: #3730a3; }
+.invoices-page .badge.paid {
+  background: #d1fae5;
+  color: #065f46;
+}
+.invoices-page .badge.unpaid {
+  background: #fef3c7;
+  color: #92400e;
+}
+.invoices-page .badge.overdue {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.invoices-page .badge.draft {
+  background: #e0e7ff;
+  color: #3730a3;
+}

@@ -67,6 +67,15 @@
   font-weight: 600;
 }
 
-.badge.paid { background: #d1fae5; color: #065f46; }
-.badge.unpaid { background: #fef3c7; color: #92400e; }
-.badge.overdue { background: #fee2e2; color: #991b1b; }
+.badge.paid {
+  background: #d1fae5;
+  color: #065f46;
+}
+.badge.unpaid {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge.overdue {
+  background: #fee2e2;
+  color: #991b1b;
+}

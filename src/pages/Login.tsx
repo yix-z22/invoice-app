@@ -5,7 +5,7 @@ import { supabase } from "../lib/supabase";
 export default function Login() {
   const { session, loading } = useAuth();
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <p>Loading...</p>;
   if (session) return <Navigate to="/" replace />;
 
   const handleGoogleLogin = () => {
@@ -15,8 +15,10 @@ export default function Login() {
     });
   };
 
-  return <div>
-    <h1> Invoice App </h1>
-    <button onClick={handleGoogleLogin}>Sign in with Google</button>
-  </div>
+  return (
+    <div>
+      <h1> Invoice App </h1>
+      <button onClick={handleGoogleLogin}>Sign in with Google</button>
+    </div>
+  );
 }

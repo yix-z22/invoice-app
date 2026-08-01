@@ -25,7 +25,7 @@ export default function Invoices() {
 
   useEffect(() => {
     let ignore = false;
-    
+
     async function load() {
       const { data } = await supabase
         .from("invoices")
@@ -38,7 +38,9 @@ export default function Invoices() {
     }
     load();
 
-    return () => { ignore = true; };
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const filtered = useMemo(() => {
@@ -60,8 +62,8 @@ export default function Invoices() {
       list = list.filter(
         (inv) =>
           String(inv.invoice_no).includes(q) ||
-        (inv.bill_to && inv.bill_to.toLowerCase().includes(q)) ||
-        (inv.attn && inv.attn.toLowerCase().includes(q)),
+          (inv.bill_to && inv.bill_to.toLowerCase().includes(q)) ||
+          (inv.attn && inv.attn.toLowerCase().includes(q)),
       );
     }
 
@@ -74,18 +76,23 @@ export default function Invoices() {
 
   function statusLabel(inv: InvoiceRow) {
     if (inv.invoice_status === "draft") return "draft";
-    return inv.payment_status
+    return inv.payment_status;
   }
 
   return (
     <div className="invoices-page">
       <div className="invoices-header">
         <h1>Invoices</h1>
-        <button className="btn-primary" onClick={() => navigate("/invoice/new")}>+ New Invoice</button>
+        <button
+          className="btn-primary"
+          onClick={() => navigate("/invoice/new")}
+        >
+          + New Invoice
+        </button>
       </div>
 
       <div className="invoices-filters">
-        <input 
+        <input
           type="text"
           placeholder="Search by invoice #, bill to , or attn..."
           value={search}
@@ -141,5 +148,5 @@ export default function Invoices() {
         </tbody>
       </table>
     </div>
-  )
+  );
 }

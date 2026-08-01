@@ -1,0 +1,159 @@
+.invoice-form {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.invoice-form h1 {
+  margin-bottom: 24px;
+}
+
+/* -- Field Grid -- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-family: inherit;
+}
+
+.form-group text-area {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* -- Line Items Table -- */
+.line-items th,
+.line-items td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 14px;
+}
+
+.line-tems th {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.line-items input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text-h);
+  box-sizing: border-box;
+}
+
+.line-items .col-desc {
+  width: 40%;
+}
+.line-items .col-qty .line-items .col-unit {
+  width: 12%;
+}
+.line-items .col-price,
+.line-items .col-amount {
+  width: 15%;
+}
+.line-items .col-actions {
+  width: 6%;
+  text-align: center;
+}
+
+.line-items .amount-cell {
+  text-align: right;
+  padding-right: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.line-items .total-row td {
+  font-weight: 700;
+  border-bottom: none;
+  padding-top: 12px;
+}
+
+/* -- Buttons -- */
+.btn-sm {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-sm:hover {
+  background: var(--accent-bg);
+}
+
+.btn-add-row {
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-save {
+  padding: 10px 24px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  opacity: 0.9;
+}
+
+.btn-delete {
+  padding: 10px 24px;
+  background: #fee2e2;
+  color: #991b1b;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.btn-delete:hover {
+  background: #fecaca;
+}

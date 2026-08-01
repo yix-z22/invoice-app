@@ -94,7 +94,13 @@ export default function Import() {
                   <td>{row.contact_person}</td>
                   <td>{row.issue_date ?? "—"}</td>
                   <td>{row.total_amount}</td>
-                  <td>{row.issue_date ? (row.payment_received_date ? "Paid" : "Unpaid") : "Draft"}</td>
+                  <td>
+                    {row.issue_date
+                      ? row.payment_received_date
+                        ? "Paid"
+                        : "Unpaid"
+                      : "Draft"}
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -13,14 +13,18 @@ export function Layout() {
           flexDirection: "column",
         }}
       >
-        <nav style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+        <nav
+          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+        >
           <Link to="/">Dashboard</Link>
           <Link to="/invoices">Invoices</Link>
           <Link to="/import">Import</Link>
         </nav>
-        <button onClick={() => supabase.auth.signOut()}
-          style={{ marginTop: "auto" }}>
-            Logout
+        <button
+          onClick={() => supabase.auth.signOut()}
+          style={{ marginTop: "auto" }}
+        >
+          Logout
         </button>
       </aside>
       <main style={{ flex: 1, padding: "1rem", overflow: "auto" }}>
